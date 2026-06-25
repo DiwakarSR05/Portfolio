@@ -36,12 +36,14 @@ A premium, interactive, and high-performance portfolio website built with **TanS
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/your-username/your-portfolio.git
    cd your-portfolio
    ```
 
 2. Install dependencies:
+
    ```bash
    bun install
    # or
@@ -49,6 +51,7 @@ A premium, interactive, and high-performance portfolio website built with **TanS
    ```
 
 3. Start the development server:
+
    ```bash
    bun dev
    # or
@@ -89,4 +92,5 @@ src/
 This project is open-source and available under the [MIT License](LICENSE).
 
 ---
+
 Designed by Diwakar Singh Rajbanshi.

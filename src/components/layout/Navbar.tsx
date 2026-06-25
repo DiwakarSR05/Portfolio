@@ -31,9 +31,11 @@ export function Navbar() {
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActive("#" + e.target.id); });
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive("#" + e.target.id);
+        });
       },
-      { rootMargin: "-40% 0px -55% 0px" }
+      { rootMargin: "-40% 0px -55% 0px" },
     );
     links.forEach((l) => {
       const el = document.querySelector(l.href);
@@ -53,7 +55,10 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-1 font-display font-semibold text-xl tracking-tight text-[var(--ink-light)]">
+          <a
+            href="#top"
+            className="flex items-center gap-1 font-display font-semibold text-xl tracking-tight text-[var(--ink-light)]"
+          >
             DSR<span className="text-[var(--primary)] blink">_</span>
           </a>
 
@@ -80,7 +85,8 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="#contact" data-cursor="link"
+              href="#contact"
+              data-cursor="link"
               className="font-display font-medium text-sm bg-[var(--primary)] text-[var(--ink)] px-5 py-2.5 rounded-full hover:bg-[var(--ink-light)] transition-colors"
             >
               Hire Me →
@@ -89,10 +95,16 @@ export function Navbar() {
 
           <button
             className="lg:hidden text-[var(--ink-light)] p-2"
-            onClick={() => setOpen(true)} aria-label="Open menu"
+            onClick={() => setOpen(true)}
+            aria-label="Open menu"
           >
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path
+                d="M3 6h16M3 11h16M3 16h16"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
@@ -101,18 +113,31 @@ export function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="fixed inset-0 z-[80] bg-[var(--bg)] lg:hidden flex flex-col"
           >
             <div className="flex justify-end p-6">
-              <button onClick={() => setOpen(false)} className="text-[var(--ink-light)] text-2xl" aria-label="Close">×</button>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-[var(--ink-light)] text-2xl"
+                aria-label="Close"
+              >
+                ×
+              </button>
             </div>
             <div className="flex-1 flex flex-col justify-center px-8 gap-2 relative overflow-hidden">
-              <div className="absolute -right-10 top-1/4 font-mono text-[260px] text-[var(--ink-light)]/[0.03] leading-none select-none">{"{}"}</div>
+              <div className="absolute -right-10 top-1/4 font-mono text-[260px] text-[var(--ink-light)]/[0.03] leading-none select-none">
+                {"{}"}
+              </div>
               {links.map((l, i) => (
                 <motion.a
-                  key={l.href} href={l.href} onClick={() => setOpen(false)}
-                  initial={{ x: 60, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  initial={{ x: 60, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.07 * i, ease: EASE_OUT_EXPO }}
                   className="font-display font-semibold text-5xl text-[var(--ink-light)] py-3"
                 >

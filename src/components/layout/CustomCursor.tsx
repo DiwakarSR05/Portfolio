@@ -36,8 +36,12 @@ export function CustomCursor() {
     <motion.div
       className="custom-cursor pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-difference"
       style={{
-        x: sx, y: sy, width: size, height: size,
-        translateX: "-50%", translateY: "-50%",
+        x: sx,
+        y: sy,
+        width: size,
+        height: size,
+        translateX: "-50%",
+        translateY: "-50%",
         border: "1.5px solid rgba(245,240,232,0.85)",
         background: variant === "default" ? "transparent" : "rgba(200,255,87,0.15)",
         opacity: visible ? 1 : 0,

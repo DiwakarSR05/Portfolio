@@ -1,10 +1,7 @@
-import { useEffect, useState, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, Stage, PresentationControls, Environment, useAnimations } from "@react-three/drei";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { EASE_OUT_EXPO } from "@/lib/motion";
-import { ParticleCanvas } from "@/components/layout/ParticleCanvas";
-import modelUrl from "@/assets/3d-model/hello-world.glb?url";
+import { HeroBackground } from "@/components/layout/HeroBackground";
 
 const ROLES = ["Full-Stack Developer", "Systems Thinker", "Interface Craftsman", "Problem Solver"];
 
@@ -42,35 +39,6 @@ function Scramble({ word }: { word: string }) {
   return <>{text}</>;
 }
 
-function Model({ url }: { url: string }) {
-  const { scene, animations } = useGLTF(url);
-  const { actions } = useAnimations(animations, scene);
-
-  useEffect(() => {
-    // Play first animation if available
-    const firstAction = Object.values(actions)[0];
-    if (firstAction) {
-      firstAction.fadeIn(0.5).play();
-    }
-  }, [actions]);
-
-  // Subtle floating effect without rotation
-  useFrame((state) => {
-    if (scene) {
-      scene.position.y = -1.5 + Math.sin(state.clock.elapsedTime) * 0.1;
-    }
-  });
-
-  return (
-    <primitive
-      object={scene}
-      scale={4.5}
-      position={[0, -2.4, 0]}
-      rotation={[0, 0, 0]}
-    />
-  );
-}
-
 export function Hero() {
   const [roleIdx, setRoleIdx] = useState(0);
   const [time, setTime] = useState("");
@@ -81,7 +49,7 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    const update = () => {
+    const updateTime = () => {
       const d = new Date();
       setTime(
         d.toLocaleTimeString("en-GB", {
@@ -92,30 +60,17 @@ export function Hero() {
         }),
       );
     };
-    update();
-    const id = setInterval(update, 1000);
+    updateTime();
+    const id = setInterval(updateTime, 1000);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <section id="top" className="relative min-h-dvh pt-0 pb-24 px-6 lg:px-10 overflow-hidden">
-      {/* Background grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--ink-light) 1px, transparent 1px), linear-gradient(90deg, var(--ink-light) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-        }}
-      />
-      <div className="absolute -top-32 -left-32 w-[480px] h-[480px] rounded-full bg-(--primary) opacity-[0.08] blur-[120px]" />
-      <div className="absolute bottom-0 right-0 w-[420px] h-[420px] rounded-full bg-accent opacity-[0.10] blur-[120px]" />
+    <section id="top" className="relative min-h-dvh pt-12 pb-18 px-6 lg:px-10 overflow-hidden">
+      <HeroBackground />
 
-      <div className="relative max-w-[1400px] mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
-        {/* LEFT */}
-        <div className="relative z-10">
+      <div className="relative max-w-[1400px] mx-auto flex flex-col items-center text-center">
+        <div className="relative z-10 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -126,25 +81,32 @@ export function Hero() {
               <span className="w-1.5 h-1.5 rounded-full bg-(--primary) pulse-dot" />
               {time}
             </span>
-            <span className="font-mono text-[11px] text-muted uppercase tracking-[0.14em]">Jhapa · Nepal</span>
+            <span className="font-mono text-[11px] text-muted uppercase tracking-[0.14em]">
+              Jhapa · Nepal
+            </span>
           </motion.div>
 
           <h1
             className="font-display font-bold text-(--ink-light) leading-[0.88] tracking-[-0.045em] mb-6"
             style={{ fontSize: "clamp(52px, 8vw, 132px)" }}
           >
-            {["DIWAKAR", "RAJBANSHI"].map((line, li) => (
-              <div key={line} className="flex flex-wrap">
+            {["DIWAKAR SINGH", "RAJBANSHI"].map((line, li) => (
+              <div key={line} className="flex flex-wrap justify-center">
                 {line.split("").map((ch, i) => (
                   <motion.span
                     key={i}
                     initial={{ rotateY: 90, opacity: 0 }}
                     animate={{ rotateY: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 + li * 0.25 + i * 0.035, duration: 0.7, ease: EASE_OUT_EXPO }}
+                    transition={{
+                      delay: 0.4 + li * 0.25 + i * 0.035,
+                      duration: 0.7,
+                      ease: EASE_OUT_EXPO,
+                    }}
                     className={`inline-block ${li === 1 ? "text-gradient-lime" : ""}`}
                     style={{ transformOrigin: "50% 50% -20px" }}
                   >
-                    {ch}
+                     {ch === " " ? <span className="inline-block w-8" /> : ch}
+
                   </motion.span>
                 ))}
               </div>
@@ -155,9 +117,11 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.5 }}
-            className="flex items-center gap-3 mb-8"
+            className="flex items-center justify-center gap-3 mb-8"
           >
-            <span className="font-mono text-[11px] text-muted uppercase tracking-[0.18em]">// role</span>
+            <span className="font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
+              // role
+            </span>
             <span
               className="font-display font-medium text-(--ink-light) flex items-center"
               style={{ fontSize: "clamp(18px, 2vw, 26px)" }}
@@ -171,16 +135,18 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.5, duration: 0.6 }}
-            className="font-body font-light text-[17px] text-muted max-w-[520px] leading-[1.75] mb-10"
+            className="font-body font-light text-[17px] text-muted max-w-[520px] mx-auto leading-[1.75] mb-10"
           >
-            I build high-performance web applications with obsessive attention to detail — from database schema to pixel-perfect UI. Currently open to full-time roles and selective freelance work.
+            I build high-performance web applications with obsessive attention to detail — from
+            database schema to pixel-perfect UI. Currently open to full-time roles and selective
+            freelance work.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 1.9, type: "spring", stiffness: 200, damping: 18 }}
-            className="flex flex-wrap items-center gap-4 mb-10"
+            className="flex flex-wrap items-center justify-center gap-4 mb-10"
           >
             <a
               href="#work"
@@ -190,41 +156,6 @@ export function Hero() {
               View My Work
               <span className="transition-transform group-hover:translate-y-0.5">↓</span>
             </a>
-          </motion.div>
-        </div>
-
-        {/* RIGHT — 3D Model */}
-        <div className="relative h-[500px] lg:h-[700px] flex items-center justify-center">
-          <ParticleCanvas />
-
-          <div className="absolute inset-0 z-10">
-            <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 4], fov: 45 }}>
-              <Suspense fallback={null}>
-                <PresentationControls
-                  global
-                  zoom={0.8}
-                  snap
-                  rotation={[0, 0, 0]}
-                  polar={[-Math.PI / 3, Math.PI / 3]}
-                  azimuth={[-Math.PI / 1.4, Math.PI / 1.4]}
-                >
-                  <Stage environment="city" intensity={0.6} shadows="contact">
-                    <Model url={modelUrl} />
-                  </Stage>
-                </PresentationControls>
-                <Environment preset="city" />
-              </Suspense>
-            </Canvas>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1 }}
-            className="absolute bottom-10 right-0 z-20 flex items-center gap-3 bg-(--bg-2)/60 backdrop-blur border border-(--border) px-4 py-2 rounded-2xl"
-          >
-            <div className="w-2 h-2 rounded-full bg-(--primary) pulse-dot" />
-            <span className="font-mono text-[10px] text-(--ink-light) uppercase tracking-[0.2em]">Interative 3D Experience</span>
           </motion.div>
         </div>
       </div>

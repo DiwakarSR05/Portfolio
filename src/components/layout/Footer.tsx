@@ -14,17 +14,32 @@ export function Footer() {
 
         <nav className="flex flex-wrap gap-x-6 gap-y-3 lg:justify-center font-ui text-sm text-[var(--muted)]">
           {["About", "Work", "Skills", "Experience", "Contact"].map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="hover:text-[var(--primary)] transition-colors">{l}</a>
+            <a
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              className="hover:text-[var(--primary)] transition-colors"
+            >
+              {l}
+            </a>
           ))}
         </nav>
 
         <div className="flex lg:justify-end items-start gap-6">
           <div className="flex gap-4 font-mono text-xs text-[var(--muted)]">
-            <a href="#" className="hover:text-[var(--primary)]">GH</a>
-            <a href="#" className="hover:text-[var(--primary)]">IN</a>
-            <a href="#" className="hover:text-[var(--primary)]">TW</a>
+            <a href="#" className="hover:text-[var(--primary)]">
+              GH
+            </a>
+            <a href="#" className="hover:text-[var(--primary)]">
+              IN
+            </a>
+            <a href="#" className="hover:text-[var(--primary)]">
+              TW
+            </a>
           </div>
-          <a href="#top" className="font-ui text-xs px-4 py-2 rounded-full border border-[var(--border)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors">
+          <a
+            href="#top"
+            className="font-ui text-xs px-4 py-2 rounded-full border border-[var(--border)] hover:border-[var(--primary)] hover:text-[var(--primary)] transition-colors"
+          >
             Back to top ↑
           </a>
         </div>

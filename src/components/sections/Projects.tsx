@@ -72,17 +72,25 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
         </div>
 
         <div className="absolute bottom-6 left-6 right-6">
-          <h3 className="font-display font-bold text-3xl text-(--ink-light) leading-none mb-2" style={{ transform: "translateZ(30px)" }}>
+          <h3
+            className="font-display font-bold text-3xl text-(--ink-light) leading-none mb-2"
+            style={{ transform: "translateZ(30px)" }}
+          >
             {p.title}
           </h3>
           <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-            <span className="text-xs font-ui text-(--primary) uppercase tracking-widest">{p.category}</span>
+            <span className="text-xs font-ui text-(--primary) uppercase tracking-widest">
+              {p.category}
+            </span>
           </div>
         </div>
 
         {/* Reveal Badge */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <div className="bg-(--primary) text-(--ink) px-6 py-2.5 rounded-full font-display font-semibold text-sm shadow-xl shadow-(--primary)/20" style={{ transform: "translateZ(50px)" }}>
+          <div
+            className="bg-(--primary) text-(--ink) px-6 py-2.5 rounded-full font-display font-semibold text-sm shadow-xl shadow-(--primary)/20"
+            style={{ transform: "translateZ(50px)" }}
+          >
             View Project ↗
           </div>
         </div>
@@ -91,11 +99,16 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
       <div className="p-8 bg-gradient-to-b from-transparent to-(--ink-)/50">
         <div className="flex flex-wrap gap-2 mb-6">
           {p.stack.slice(0, 3).map((s) => (
-            <span key={s} className="font-mono text-[9px] px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--ink)] border border-(--border) uppercase tracking-wider">
+            <span
+              key={s}
+              className="font-mono text-[9px] px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--ink)] border border-(--border) uppercase tracking-wider"
+            >
               {s}
             </span>
           ))}
-          {p.stack.length > 3 && <span className="text-[10px] text-muted-ink">+{p.stack.length - 3}</span>}
+          {p.stack.length > 3 && (
+            <span className="text-[10px] text-muted-ink">+{p.stack.length - 3}</span>
+          )}
         </div>
 
         <p className="font-body text-[14px] text-muted-ink leading-relaxed line-clamp-2 mb-8 h-10">
@@ -104,11 +117,21 @@ function ProjectCard({ p, i }: { p: Project; i: number }) {
 
         <div className="pt-6 border-t border-(--border)/50 flex items-center justify-between">
           <div className="flex gap-5">
-            <a href={p.links.live} target="_blank" rel="noreferrer" className="text-muted hover:text-(--primary) transition-colors flex items-center gap-1.5 text-xs font-ui group/link">
+            <a
+              href={p.links.live}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted hover:text-(--primary) transition-colors flex items-center gap-1.5 text-xs font-ui group/link"
+            >
               <ExternalLink size={14} className="group-hover/link:rotate-12 transition-transform" />
               Live
             </a>
-            <a href={p.links.github} target="_blank" rel="noreferrer" className="text-muted hover:text-(--primary) transition-colors flex items-center gap-1.5 text-xs font-ui group/link">
+            <a
+              href={p.links.github}
+              target="_blank"
+              rel="noreferrer"
+              className="text-muted hover:text-(--primary) transition-colors flex items-center gap-1.5 text-xs font-ui group/link"
+            >
               <Github size={14} className="group-hover/link:scale-110 transition-transform" />
               Source
             </a>
@@ -154,8 +177,11 @@ export function Projects() {
           </div>
           <div className="flex items-center gap-2 bg-(--surface)/10 backdrop-blur-xl p-1.5 rounded-full border border-(--border)">
             {(["grid", "list"] as const).map((v) => (
-              <button key={v} onClick={() => setView(v)}
-                className={`px-6 py-2 rounded-full text-xs font-ui transition-all duration-300 ${view === v ? "bg-(--primary) text-(--ink) shadow-lg" : "text-muted hover:text-ink-light"}`}>
+              <button
+                key={v}
+                onClick={() => setView(v)}
+                className={`px-6 py-2 rounded-full text-xs font-ui transition-all duration-300 ${view === v ? "bg-(--primary) text-(--ink) shadow-lg" : "text-muted hover:text-ink-light"}`}
+              >
                 {v}
               </button>
             ))}
@@ -172,10 +198,12 @@ export function Projects() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
               data-cursor="link"
-              className={`px-5 py-2.5 rounded-full font-ui text-[13px] border transition-all duration-400 ${cat === f.key
-                ? "bg-(--primary) text-(--ink) border-(--primary) shadow-lg shadow-(--primary)/20"
-                : "border-(--border) text-muted hover:text-(--ink-light) hover:border-(--ink-light)/30 bg-(--surface)/5"
-                }`}>
+              className={`px-5 py-2.5 rounded-full font-ui text-[13px] border transition-all duration-400 ${
+                cat === f.key
+                  ? "bg-(--primary) text-(--ink) border-(--primary) shadow-lg shadow-(--primary)/20"
+                  : "border-(--border) text-muted hover:text-(--ink-light) hover:border-(--ink-light)/30 bg-(--surface)/5"
+              }`}
+            >
               {f.label}
             </motion.button>
           ))}
@@ -183,34 +211,54 @@ export function Projects() {
 
         <AnimatePresence mode="wait">
           {view === "grid" ? (
-            <motion.div key="grid" layout
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="grid md:grid-cols-2 gap-8 lg:gap-10 perspective-1000">
+            <motion.div
+              key="grid"
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="grid md:grid-cols-2 gap-8 lg:gap-10 perspective-1000"
+            >
               {filtered.map((p, i) => (
                 <ProjectCard key={p.id} p={p} i={i} />
               ))}
             </motion.div>
           ) : (
-            <motion.div key="list"
-              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="border-t border-(--border)">
+            <motion.div
+              key="list"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="border-t border-(--border)"
+            >
               {filtered.map((p, i) => (
-                <motion.div key={p.id}
-                  initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }} transition={{ delay: i * 0.04 }}>
+                <motion.div
+                  key={p.id}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.04 }}
+                >
                   <Link
                     to={"/projects/$projectId" as any}
                     params={{ projectId: p.id } as any}
                     className="group grid grid-cols-[40px_1fr_auto_auto] gap-4 lg:gap-8 items-center py-8 border-b border-(--border) hover:bg-(--surface)/3 hover:px-6 transition-all duration-500"
                     data-cursor="link"
                   >
-                    <span className="font-mono text-xs text-muted/50 group-hover:text-(--primary) transition-colors">/{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-xs text-muted/50 group-hover:text-(--primary) transition-colors">
+                      /{String(i + 1).padStart(2, "0")}
+                    </span>
                     <span className="font-display font-semibold text-2xl lg:text-4xl text-(--ink-light) group-hover:text-(--primary) transition-colors">
                       {p.title}
                     </span>
                     <div className="hidden lg:flex gap-2">
                       {p.stack.slice(0, 4).map((s) => (
-                        <span key={s} className="font-mono text-[9px] px-2 py-1 rounded border border-(--border) text-muted uppercase tracking-wider">{s}</span>
+                        <span
+                          key={s}
+                          className="font-mono text-[9px] px-2 py-1 rounded border border-(--border) text-muted uppercase tracking-wider"
+                        >
+                          {s}
+                        </span>
                       ))}
                     </div>
                     <div className="flex items-center gap-4">
