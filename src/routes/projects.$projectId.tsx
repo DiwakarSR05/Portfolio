@@ -39,7 +39,7 @@ function ProjectCaseStudy() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 lg:pt-48 lg:pb-32 px-6 lg:px-10 overflow-hidden">
+      <section className="relative pt-0 pb-0 lg:pt-20 lg:pb-20 px-6 lg:px-10 overflow-hidden">
         <div className="max-w-[1400px] mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

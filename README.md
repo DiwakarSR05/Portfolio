@@ -1,30 +1,41 @@
 # Modern Personal Portfolio
 
-A premium, interactive, and high-performance portfolio website built with **TanStack Start**, **React 19**, and **Framer Motion**. Designed for developers who want a sleek, modern, and highly-performant online presence.
+A premium, interactive, and high-performance portfolio website built with **TanStack Start**, **React 19**, and **Framer Motion**. Designed with a "Design Engineer" mindset, focusing on technical excellence, smooth interactivity, and premium aesthetics.
 
-## ✨ Features
+## ✨ Key Features
 
-- **Dynamic Hero Section**: A stunning entrance with smooth animations and a clear call-to-action.
-- **Dynamic Project Case Studies**: Individual routing for every project with detailed breakdowns, challenges, and solutions.
-- **Interactive Works Gallery**: Showcase your projects with high-quality screenshots and metadata.
-- **Verified Certifications**: A dedicated section for professional credentials with interactive cards.
-- **Skills Showcase**: A beautifully animated overview of your technical stack.
-- **Client Testimonials**: Dynamic carousel to display feedback from collaborators and clients.
-- **Custom UI Components**: Built with Radix UI and customized with "Claymorphism" aesthetics.
-- **Responsive Design**: Flawless experience across mobile, tablet, and desktop devices.
-- **Premium Interactivity**: Powered by Framer Motion for smooth transitions and hover effects.
-- **Seamless Contact Form**: Integrated with **Web3Forms** for direct email delivery to `deewakarsinghraz@gmail.com`.
+- **Interactive Grid Scan & Face Tracking**: A sophisticated background effect using **Three.js** and **Face-API** that responds to mouse movement and webcam-based face detection (optional).
+- **Claymorphic & Glassmorphic UI**: A modern design system utilizing subtle depth, glass effects, and custom shadows for a premium "tactile" feel.
+- **Dynamic Project Case Studies**: Individual routing for every project with detailed breakdowns, automated screenshot galleries, and category-specific tints.
+- **Micro-Interactions**: Magnetic buttons, scramble text effects, and custom pulse animations powered by **Framer Motion 12**.
+- **Performance Optimized**: Leveraging **TanStack Start** for server-side capabilities and smooth client-side transitions.
+- **Responsive & Accessible**: Flawless experience across all devices with semantic HTML and Radix UI primitives.
 
 ## 🛠️ Tech Stack
 
+- **Framework**: [TanStack Start](https://tanstack.com/start) (Full-stack React with TanStack Router/Query)
 - **Core**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
-- **Framework**: [TanStack Start](https://tanstack.com/start) (Full-stack React framework)
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Visuals & 3D**: [Three.js](https://threejs.org/), [OGL](https://github.com/o-gl/ogl), [Postprocessing](https://pmndrs.github.io/postprocessing/)
 - **Animations**: [Framer Motion 12](https://www.framer.com/motion/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **AI/Interactivity**: [Face-API.js](https://github.com/justadudewhohacks/face-api.js) (Face tracking interactivity)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Form Handling**: [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/)
-- **Data Fetching**: [TanStack Query](https://tanstack.com/query)
+- **Forms**: [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+- **Components**: [Radix UI](https://www.radix-ui.com/) primitives
+
+## 🏗️ Core Layout Components
+
+The project's layout is modularized into specialized components located in `src/components/layout/`:
+
+| Component          | Description                                                                    |
+| :----------------- | :----------------------------------------------------------------------------- |
+| **Navbar**         | Sticky glassmorphic navigation bar with smooth-scroll integration to sections. |
+| **Footer**         | Global footer featuring dynamic social links and site metadata.                |
+| **Preloader**      | A custom entrance experience with branding and state synchronization.          |
+| **CustomCursor**   | An interactive magnetic cursor that changes based on hovered elements.         |
+| **ScrollProgress** | A top-level progress bar indicating current scroll depth.                      |
+| **HeroBackground** | Houses the `GridScan` 3D elements for a high-impact landing page.              |
+| **ParticleCanvas** | Canvas-based ambient particle effects for background depth.                    |
 
 ## 🚀 Getting Started
 
@@ -51,46 +62,37 @@ A premium, interactive, and high-performance portfolio website built with **TanS
    ```
 
 3. Start the development server:
-
    ```bash
    bun dev
    # or
    npm run dev
    ```
 
-4. Build for production:
-   ```bash
-   bun run build
-   # or
-   npm run build
-   ```
-
-### 📧 Contact Form Configuration
-
-The portfolio uses **Web3Forms** for email delivery. To receive messages in your inbox:
-
-1. Get a free access key from [Web3Forms](https://web3forms.com/).
-2. Update the `access_key` in `src/components/sections/Contact.tsx`.
-3. (Optional) Set up a [Honeypot](https://docs.web3forms.com/honeypot) for spam protection.
-
 ## 📁 Project Structure
 
 ```text
 src/
 ├── components/
-│   ├── layout/      # Navbar, Footer, Preloader, CustomCursor
-│   ├── sections/    # Hero, About, Skills, Projects, Certifications, etc.
-│   └── ui/          # Reusable UI primitives
-├── data/            # Centralized project and certification data
-├── lib/             # Utility functions and motion variants
-├── routes/          # TanStack Router page definitions ($projectId support)
-└── styles.css       # Global styles and Tailwind v4 configuration
+│   ├── layout/      # Global layout components (Navbar, Footer, Cursor, etc.)
+│   ├── sections/    # Modular page sections (Hero, About, Projects, etc.)
+│   └── ui/          # Atomic UI primitives and 3D/GL components like GridScan
+├── data/            # Centralized project, certification, and experience data
+├── lib/             # Utilities, motion variants, and error reporting
+├── routes/          # TanStack Router definitions including case study routes
+└── styles.css       # Global CSS and Tailwind v4 configuration
 ```
+
+## 📧 Contact Form Configuration
+
+The portfolio uses **Web3Forms** for email delivery. To receive messages in your inbox:
+
+1. Get a free access key from [Web3Forms](https://web3forms.com/).
+2. Update the `access_key` in `src/components/sections/Contact.tsx`.
 
 ## 📄 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
 
 ---
 
-Designed by Diwakar Singh Rajbanshi.
+Designed and Developed by **Diwakar Singh Rajbanshi**.

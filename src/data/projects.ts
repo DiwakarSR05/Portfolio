@@ -97,7 +97,7 @@ export const projects: Project[] = [
   },
   {
     id: "portfolio",
-    title: "Portfolio V.06",
+    title: "Portfolio",
     description:
       "Personal portfolio website — showcasing projects, certifications, and high-performance React interactions.",
     longDescription:
